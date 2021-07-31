@@ -1,0 +1,5 @@
+*.o
+cube.h.gch
+ac_client
+ac_server
+source/enet/*
