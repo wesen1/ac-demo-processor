@@ -3,3 +3,4 @@ cube.h.gch
 ac_client
 ac_server
 source/enet/*
+util/generate-message-classes/switch-case.txt

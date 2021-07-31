@@ -79,7 +79,84 @@ CLIENT_OBJS= \
 	bot/bot_util.o \
 	bot/bot_waypoint.o \
 	bot/ac_bot.o \
-	bot/ac_bot_ai.o
+	bot/ac_bot_ai.o \
+	demoparser/MessageStream/Message.o \
+	demoparser/MessageStream/NullMessage.o \
+	demoparser/MessageStream/Messages/Arenawin.o \
+	demoparser/MessageStream/Messages/Authchal.o \
+	demoparser/MessageStream/Messages/Authreq.o \
+	demoparser/MessageStream/Messages/Callvoteerr.o \
+	demoparser/MessageStream/Messages/Callvote.o \
+	demoparser/MessageStream/Messages/Callvotesuc.o \
+	demoparser/MessageStream/Messages/Cdis.o \
+	demoparser/MessageStream/Messages/Client.o \
+	demoparser/MessageStream/Messages/Clientping.o \
+	demoparser/MessageStream/Messages/Discscores.o \
+	demoparser/MessageStream/Messages/Editent.o \
+	demoparser/MessageStream/Messages/Edith.o \
+	demoparser/MessageStream/Messages/Editmode.o \
+	demoparser/MessageStream/Messages/Flagcnt.o \
+	demoparser/MessageStream/Messages/Flaginfo.o \
+	demoparser/MessageStream/Messages/Flagmsg.o \
+	demoparser/MessageStream/Messages/Forcedeath.o \
+	demoparser/MessageStream/Messages/Gamemode.o \
+	demoparser/MessageStream/Messages/Gibdamage.o \
+	demoparser/MessageStream/Messages/Gibdied.o \
+	demoparser/MessageStream/Messages/Hitpush.o \
+	demoparser/MessageStream/Messages/Hudextras.o \
+	demoparser/MessageStream/Messages/Initclient.o \
+	demoparser/MessageStream/Messages/Iplist.o \
+	demoparser/MessageStream/Messages/Itemacc.o \
+	demoparser/MessageStream/Messages/Itemlist.o \
+	demoparser/MessageStream/Messages/Itemspawn.o \
+	demoparser/MessageStream/Messages/Mapchange.o \
+	demoparser/MessageStream/Messages/Mapident.o \
+	demoparser/MessageStream/Messages/Newmap.o \
+	demoparser/MessageStream/Messages/Points.o \
+	demoparser/MessageStream/Messages/Pong.o \
+	demoparser/MessageStream/Messages/Reload.o \
+	demoparser/MessageStream/Messages/Resume.o \
+	demoparser/MessageStream/Messages/Senddemolist.o \
+	demoparser/MessageStream/Messages/Servermode.o \
+	demoparser/MessageStream/Messages/Servinfo.o \
+	demoparser/MessageStream/Messages/Servmsg.o \
+	demoparser/MessageStream/Messages/Servopinfo.o \
+	demoparser/MessageStream/Messages/Setteam.o \
+	demoparser/MessageStream/Messages/Shotfx.o \
+	demoparser/MessageStream/Messages/Sound.o \
+	demoparser/MessageStream/Messages/Spawndeny.o \
+	demoparser/MessageStream/Messages/Spawn.o \
+	demoparser/MessageStream/Messages/Spawnstate.o \
+	demoparser/MessageStream/Messages/Switchname.o \
+	demoparser/MessageStream/Messages/Switchskin.o \
+	demoparser/MessageStream/Messages/Switchteam.o \
+	demoparser/MessageStream/Messages/Teamdeny.o \
+	demoparser/MessageStream/Messages/Teamtextme.o \
+	demoparser/MessageStream/Messages/Textme.o \
+	demoparser/MessageStream/Messages/Textprivate.o \
+	demoparser/MessageStream/Messages/Thrownade.o \
+	demoparser/MessageStream/Messages/Timeup.o \
+	demoparser/MessageStream/Messages/Voicecom.o \
+	demoparser/MessageStream/Messages/Voicecomteam.o \
+	demoparser/MessageStream/Messages/Vote.o \
+	demoparser/MessageStream/Messages/Voteresult.o \
+	demoparser/MessageStream/Messages/Weapchange.o \
+	demoparser/MessageStream/Messages/Welcome.o \
+	demoparser/MessageStream/MessageParser.o \
+	demoparser/MessageStream/MessageStream.o \
+	demoparser/PacketStream/Packet.o \
+	demoparser/PacketStream/PacketParser.o \
+	demoparser/PacketStream/PacketStream.o \
+	demoparser/ParsedDemo.o \
+	demoparser/DemoParser.o \
+	bestscoretimefinder/DemoInfoProcessor/FlagScore.o \
+	bestscoretimefinder/DemoInfoProcessor/FlagScoreList.o \
+	bestscoretimefinder/DemoInfoProcessor/Game.o \
+	bestscoretimefinder/DemoInfoProcessor/Player.o \
+	bestscoretimefinder/DemoInfoProcessor/PlayerList.o \
+	bestscoretimefinder/FlagScoreFinder.o \
+	bestscoretimefinder/BestScoreTimeFinder.o \
+	bestscoretimefinder/BestScoreTimeFinderFactory.o
 
 CLIENT_PCH= cube.h.gch
 
