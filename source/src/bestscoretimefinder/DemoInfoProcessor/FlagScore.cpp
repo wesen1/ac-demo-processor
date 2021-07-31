@@ -17,6 +17,20 @@ FlagScore::FlagScore(Player* _player)
   reset();
 }
 
+/**
+ * FlagScore copy constructor.
+ *
+ * @param FlagScore _flagScoreToCopy The FlagScore to copy
+ */
+FlagScore::FlagScore(FlagScore* _flagScoreToCopy)
+{
+  player = new Player(_flagScoreToCopy->player);
+  wasFlagStolenFromOriginalPosition = _flagScoreToCopy->wasFlagStolenFromOriginalPosition;
+  weaponId = _flagScoreToCopy->weaponId;
+  spawnTimestamp = _flagScoreToCopy->spawnTimestamp;
+  scoreTimestamp = _flagScoreToCopy->scoreTimestamp;
+}
+
 
 // Getters and Setters
 

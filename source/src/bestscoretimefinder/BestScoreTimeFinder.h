@@ -6,6 +6,7 @@
 #include "../demoparser/DemoParser.h"
 #include "FlagScoreFinder.h"
 #include "DemoInfoProcessor/FlagScore.h"
+#include <unordered_map>
 
 #ifndef BEST_SCORE_TIME_FINDER
 #define BEST_SCORE_TIME_FINDER
@@ -15,11 +16,10 @@ class BestScoreTimeFinder
   private:
     DemoParser* demoParser;
     FlagScoreFinder* flagScoreFinder;
-    bool flagScoreWasDoneByTargetPlayer(FlagScore*, const char*, const char*);
 
   public:
     BestScoreTimeFinder(DemoParser*, FlagScoreFinder*);
-    FlagScore* findBestScoreTime(char*, const char*, const char*);
+    std::unordered_map<std::string, FlagScore*> findBestScoreTimes(char*);
 };
 
 #endif

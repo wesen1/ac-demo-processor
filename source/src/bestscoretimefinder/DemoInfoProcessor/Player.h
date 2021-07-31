@@ -19,6 +19,7 @@ class Player
 
   public:
     Player(int);
+    Player(Player*);
 
     int getClientNumber();
     char* getName();
