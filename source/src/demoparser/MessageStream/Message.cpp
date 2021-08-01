@@ -32,6 +32,16 @@ void Message::setDemoProtocol(int _demoprotocol)
 }
 
 /**
+ * Sets the data buffer that contains the raw data string from which this Message was parsed.
+ *
+ * @param ucharbuf _rawDataBuffer The raw data buffer
+ */
+void Message::setRawDataBuffer(ucharbuf _rawDataBuffer)
+{
+  rawDataBuffer = _rawDataBuffer;
+}
+
+/**
  * Returns the message type.
  *
  * @return int The message type

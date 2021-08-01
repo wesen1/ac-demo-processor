@@ -123,6 +123,8 @@ Message* MessageParser::parseNextMessageFromPositionMessagesBuffer(ucharbuf* _bu
  */
 Message* MessageParser::parseNextMessageFromGeneralMessagesBuffer(ucharbuf* _buffer)
 {
+  int bufferPositionBeforeMessageParsing = _buffer->length();
+
   int type = getint(*_buffer);
   if(demoprotocol == 1132)
   {
@@ -140,6 +142,13 @@ Message* MessageParser::parseNextMessageFromGeneralMessagesBuffer(ucharbuf* _buf
   Message* message = createMessageForMessageType(type);
   message->setDemoProtocol(demoprotocol);
   message->extractDataFromBuffer(_buffer);
+
+  int bufferPositionAfterMessageParsing = _buffer->length();
+  int rawDataBufferLength = bufferPositionAfterMessageParsing - bufferPositionBeforeMessageParsing;
+
+  _buffer->len = bufferPositionBeforeMessageParsing;
+  ucharbuf rawDataBuffer = _buffer->subbuf(rawDataBufferLength);
+  message->setRawDataBuffer(rawDataBuffer);
 
   return message;
 }
