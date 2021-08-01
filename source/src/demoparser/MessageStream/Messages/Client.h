@@ -22,7 +22,8 @@ class Client: public Message
     void addChildMessage(Message*);
     void removeChildMessage(Message*);
 
-    void extractDataFromBuffer(ucharbuf*);
+    void extractDataFromBuffer(ucharbuf*) override;
+    void writeToBuffer(ucharbuf*) override;
 
 
     int clientNumber;

@@ -41,3 +41,28 @@ void Client::extractDataFromBuffer(ucharbuf* _buffer)
   int clientMessagesBufferLength = getuint(*_buffer);
   clientMessagesBuffer = _buffer->subbuf(clientMessagesBufferLength);
 }
+
+/**
+ * Writes this Message to a given data buffer.
+ *
+ * @param ucharbuf _buffer The buffer to write this Message to
+ */
+void Client::writeToBuffer(ucharbuf* _buffer)
+{
+  // Collect the child message strings
+  uchar* data = new uchar[MAXTRANS];
+  ucharbuf* childMessagesBuffer = new ucharbuf(data, MAXTRANS);
+  for (Message* childMessage : childMessages)
+  {
+    childMessage->writeToBuffer(childMessagesBuffer);
+  }
+
+  // Write this message to the buffer
+  if (childMessagesBuffer->length() > 0)
+  {
+    putint(*_buffer, SV_CLIENT);
+    putint(*_buffer, clientNumber);
+    putuint(*_buffer, childMessagesBuffer->length());
+    _buffer->put(childMessagesBuffer->buf, childMessagesBuffer->length());
+  }
+}

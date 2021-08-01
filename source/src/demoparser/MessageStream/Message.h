@@ -29,6 +29,7 @@ class Message
     const char* getTypeName();
 
     virtual void extractDataFromBuffer(ucharbuf*) = 0;
+    virtual void writeToBuffer(ucharbuf*);
 };
 
 #endif

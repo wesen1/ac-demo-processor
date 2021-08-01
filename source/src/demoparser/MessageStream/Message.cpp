@@ -190,3 +190,14 @@ const char* Message::getTypeName()
     return "Unknown type";
   }
 }
+
+/**
+ * Writes this Message to a given data buffer.
+ * By default this writes the raw data buffer from which this Message was parsed to the given buffer.
+ *
+ * @param ucharbuf _buffer The buffer to write this Message to
+ */
+void Message::writeToBuffer(ucharbuf* _buffer)
+{
+  _buffer->put(rawDataBuffer.buf, rawDataBuffer.remaining());
+}
