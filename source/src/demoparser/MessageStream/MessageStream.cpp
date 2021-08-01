@@ -22,6 +22,19 @@ MessageStream::MessageStream(MessageParser* _messageParser, int _channel, ucharb
 }
 
 
+// Getters and Setters
+
+/**
+ * Returns the message data buffer from which the messages are extracted.
+ *
+ * @return ucharbuf The message data buffer
+ */
+ucharbuf* MessageStream::getMessageDataBuffer()
+{
+  return messageDataBuffer;
+}
+
+
 // Public Methods
 
 /**
@@ -39,7 +52,10 @@ Message* MessageStream::getNextMessage()
     if (lastClientMessage->clientMessagesBuffer.remaining() > 0)
     {
       nextMessage = messageParser->parseNextMessageFromBuffer(1, &lastClientMessage->clientMessagesBuffer);
-      nextMessage->setParentClientMessage(lastClientMessage);
+      if (lastClientMessage)
+      {
+        lastClientMessage->addChildMessage(nextMessage);
+      }
       if (nextMessage) return nextMessage;
     }
 

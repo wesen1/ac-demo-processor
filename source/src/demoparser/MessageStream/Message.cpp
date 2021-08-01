@@ -32,6 +32,16 @@ void Message::setDemoProtocol(int _demoprotocol)
 }
 
 /**
+ * Sets the data buffer that contains the raw data string from which this Message was parsed.
+ *
+ * @param ucharbuf _rawDataBuffer The raw data buffer
+ */
+void Message::setRawDataBuffer(ucharbuf _rawDataBuffer)
+{
+  rawDataBuffer = _rawDataBuffer;
+}
+
+/**
  * Returns the message type.
  *
  * @return int The message type
@@ -39,6 +49,16 @@ void Message::setDemoProtocol(int _demoprotocol)
 int Message::getType()
 {
   return type;
+}
+
+/**
+ * Returns the parent Client message.
+ *
+ * @return Message The parent Client message
+ */
+Message* Message::getParentClientMessage()
+{
+  return parentClientMessage;
 }
 
 /**
@@ -179,4 +199,15 @@ const char* Message::getTypeName()
   {
     return "Unknown type";
   }
+}
+
+/**
+ * Writes this Message to a given data buffer.
+ * By default this writes the raw data buffer from which this Message was parsed to the given buffer.
+ *
+ * @param ucharbuf _buffer The buffer to write this Message to
+ */
+void Message::writeToBuffer(ucharbuf* _buffer)
+{
+  _buffer->put(rawDataBuffer.buf, rawDataBuffer.remaining());
 }

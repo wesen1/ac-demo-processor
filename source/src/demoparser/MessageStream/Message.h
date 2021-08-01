@@ -12,6 +12,7 @@ class Message
 {
   private:
     int type;
+    ucharbuf rawDataBuffer;
     Message* parentClientMessage;
 
   protected:
@@ -20,12 +21,16 @@ class Message
   public:
     Message(int);
     void setDemoProtocol(int);
+    void setRawDataBuffer(ucharbuf);
     int getType();
+    Message* getParentClientMessage();
     void setParentClientMessage(Message*);
+
     int getClientNumberFromParentClientMessage();
     const char* getTypeName();
 
     virtual void extractDataFromBuffer(ucharbuf*) = 0;
+    virtual void writeToBuffer(ucharbuf*);
 };
 
 #endif
