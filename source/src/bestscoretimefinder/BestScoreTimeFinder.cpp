@@ -51,12 +51,15 @@ std::unordered_map<std::string, FlagScore*> BestScoreTimeFinder::findBestScoreTi
       if (nextFlagScore &&
           nextFlagScore->getWasFlagStolenFromOriginalPosition())
       { // Found a valid flag score
-        std::string playerName(nextFlagScore->getPlayer()->getName());
+        std::string playerIdentifier;
+        playerIdentifier += nextFlagScore->getPlayer()->getIpString();
+        playerIdentifier += "_";
+        playerIdentifier += nextFlagScore->getPlayer()->getName();
 
         FlagScore* bestFlagScore = NULL;
-        if (bestPlayerFlagScores.find(playerName) != bestPlayerFlagScores.end())
+        if (bestPlayerFlagScores.find(playerIdentifier) != bestPlayerFlagScores.end())
         {
-          bestFlagScore = bestPlayerFlagScores[playerName];
+          bestFlagScore = bestPlayerFlagScores[playerIdentifier];
         }
 
         if (!bestFlagScore ||
@@ -64,7 +67,7 @@ std::unordered_map<std::string, FlagScore*> BestScoreTimeFinder::findBestScoreTi
         {
           // Copy the FlagScore object to prevent further modifications by the FlagScoreFinder
           FlagScore* copiedFlagScore = new FlagScore(nextFlagScore);
-          bestPlayerFlagScores[playerName] = copiedFlagScore;
+          bestPlayerFlagScores[playerIdentifier] = copiedFlagScore;
         }
       }
     }
