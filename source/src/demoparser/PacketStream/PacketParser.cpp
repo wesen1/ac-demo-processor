@@ -34,22 +34,19 @@ Packet* PacketParser::parseNextPacketFromStream(stream* _demoData)
 
   numberOfReadBytes = _demoData->read(&timestamp, sizeof(timestamp));
   if (numberOfReadBytes != sizeof(timestamp))
-  {
-    clientlogf("No next packet timestamp found in demo data");
+  { // No next packet timestamp found in demo data
     return NULL;
   }
 
   numberOfReadBytes = _demoData->read(&channel, sizeof(channel));
   if (numberOfReadBytes != sizeof(channel))
-  {
-    clientlogf("No next channel number found in demo data");
+  { // No next channel number found in demo data
     return NULL;
   }
 
   numberOfReadBytes = _demoData->read(&payloadLength, sizeof(payloadLength));
   if (numberOfReadBytes != sizeof(payloadLength))
-  {
-    clientlogf("No next payload length found in demo data");
+  { // No next payload length found in demo data
     return NULL;
   }
 
@@ -61,8 +58,7 @@ Packet* PacketParser::parseNextPacketFromStream(stream* _demoData)
   unsigned char* payload = new unsigned char[payloadLength];
   numberOfReadBytes = _demoData->read(payload, payloadLength);
   if (numberOfReadBytes != payloadLength)
-  {
-    clientlogf("No complete next payload found");
+  { // No complete next payload found
     return NULL;
   }
 

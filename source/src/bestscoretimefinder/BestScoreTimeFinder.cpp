@@ -35,12 +35,14 @@ std::unordered_map<std::string, FlagScore*> BestScoreTimeFinder::findBestScoreTi
   ParsedDemo* parsedDemo = demoParser->parseDemo(_demoFilePath);
   if (parsedDemo)
   {
+    /*
     clientlogf("demoheader data:");
     clientlogf("magic: %s", parsedDemo->getDemoHeader()->magic);
     clientlogf("version: %d", parsedDemo->getDemoHeader()->version);
     clientlogf("protocol: %d", parsedDemo->getDemoHeader()->protocol);
     clientlogf("desc: %s", parsedDemo->getDemoHeader()->desc);
     clientlogf("plist: %s", parsedDemo->getDemoHeader()->plist);
+    */
 
     FlagScore* nextFlagScore;
     do
@@ -49,14 +51,6 @@ std::unordered_map<std::string, FlagScore*> BestScoreTimeFinder::findBestScoreTi
       if (nextFlagScore &&
           nextFlagScore->getWasFlagStolenFromOriginalPosition())
       { // Found a valid flag score
-        clientlogf("Found relevant flag score: %d milliseconds by %s (%d, %s) with weapon %d",
-                   nextFlagScore->calculateScoreTime(),
-                   nextFlagScore->getPlayer()->getName(),
-                   nextFlagScore->getPlayer()->getClientNumber(),
-                   nextFlagScore->getPlayer()->getIpString().c_str(),
-                   nextFlagScore->getWeaponId()
-        );
-
         std::string playerName(nextFlagScore->getPlayer()->getName());
 
         FlagScore* bestFlagScore = NULL;
