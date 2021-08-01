@@ -23,6 +23,7 @@ class Message
     void setDemoProtocol(int);
     void setRawDataBuffer(ucharbuf);
     int getType();
+    Message* getParentClientMessage();
     void setParentClientMessage(Message*);
 
     int getClientNumberFromParentClientMessage();

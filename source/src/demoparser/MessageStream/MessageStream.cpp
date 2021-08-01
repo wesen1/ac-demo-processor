@@ -22,6 +22,19 @@ MessageStream::MessageStream(MessageParser* _messageParser, int _channel, ucharb
 }
 
 
+// Getters and Setters
+
+/**
+ * Returns the message data buffer from which the messages are extracted.
+ *
+ * @return ucharbuf The message data buffer
+ */
+ucharbuf* MessageStream::getMessageDataBuffer()
+{
+  return messageDataBuffer;
+}
+
+
 // Public Methods
 
 /**

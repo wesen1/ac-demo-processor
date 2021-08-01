@@ -52,6 +52,16 @@ int Message::getType()
 }
 
 /**
+ * Returns the parent Client message.
+ *
+ * @return Message The parent Client message
+ */
+Message* Message::getParentClientMessage()
+{
+  return parentClientMessage;
+}
+
+/**
  * Sets the parent Client message.
  *
  * @param Message _parentClientMessage The parent Client message

@@ -21,6 +21,7 @@ class MessageStream
 
   public:
     MessageStream(MessageParser*, int, ucharbuf*);
+    ucharbuf* getMessageDataBuffer();
     Message* getNextMessage();
 };
 
