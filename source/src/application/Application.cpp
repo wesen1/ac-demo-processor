@@ -5,6 +5,7 @@
 
 #include "Application.h"
 #include "Commands/FindBestScoreTimes.h"
+#include "Commands/RemoveMessageTypes.h"
 
 
 // Public Methods
@@ -30,6 +31,20 @@ int Application::run(int _argc, char **_argv)
     {
       FindBestScoreTimes command;
       command.execute(demoFilePath);
+    }
+  );
+
+  std::string outputFilePath;
+  std::vector<std::string> messageTypesToRemove;
+  CLI::App* removeMessageTypesCommand = app.add_subcommand("removemessagetypes", "Parses a given demo, filters out given message types and writes the result to a given path");
+  removeMessageTypesCommand->add_option("-d,--demo", demoFilePath, "The demo file to process")->required();
+  removeMessageTypesCommand->add_option("-o, --output", outputFilePath, "The output file path")->required();
+  removeMessageTypesCommand->add_option("-t, --types", messageTypesToRemove, "The message types to remove")->required();
+  removeMessageTypesCommand->callback(
+    [&demoFilePath, &outputFilePath, &messageTypesToRemove]()
+    {
+      RemoveMessageTypes command;
+      command.execute(demoFilePath, outputFilePath, messageTypesToRemove);
     }
   );
 

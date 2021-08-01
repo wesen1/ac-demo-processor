@@ -159,6 +159,7 @@ CLIENT_OBJS= \
 	bestscoretimefinder/BestScoreTimeFinderFactory.o \
 	demowriter/DemoWriter.o \
 	application/Commands/FindBestScoreTimes.o \
+	application/Commands/RemoveMessageTypes.o \
 	application/Application.o
 
 CLIENT_PCH= cube.h.gch
