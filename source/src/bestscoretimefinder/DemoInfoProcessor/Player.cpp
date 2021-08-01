@@ -17,6 +17,20 @@ Player::Player(int _clientNumber)
   ip = -1;
 }
 
+/**
+ * Player copy constructor.
+ *
+ * @param Player _playerToCopy The Player to copy
+ */
+Player::Player(Player* _playerToCopy)
+{
+  clientNumber = _playerToCopy->clientNumber;
+  ip = _playerToCopy->ip;
+
+  name = new char[MAXNAMELEN];
+  strcpy(name, _playerToCopy->name);
+}
+
 
 // Getters and Setters
 

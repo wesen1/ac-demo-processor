@@ -95,7 +95,6 @@ Message* MessageParser::parseNextMessageFromBuffer(int _channel, ucharbuf* _buff
   else if (_channel == 2) return parseNextMessageFromFileTransmissionMessagesBuffer(_buffer);
   else
   { // Unknown channel
-    clientlogf("Unknown channel %d", _channel);
     return NULL;
   }
 }
@@ -112,7 +111,6 @@ Message* MessageParser::parseNextMessageFromBuffer(int _channel, ucharbuf* _buff
  */
 Message* MessageParser::parseNextMessageFromPositionMessagesBuffer(ucharbuf* _buffer)
 { // Position messages are not needed yet, so not implemented
-  //clientlogf("Skipped channel (position messages)");
   return NULL;
 }
 

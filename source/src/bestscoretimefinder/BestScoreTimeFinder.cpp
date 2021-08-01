@@ -22,75 +22,54 @@ BestScoreTimeFinder::BestScoreTimeFinder(DemoParser* _demoParser, FlagScoreFinde
 // Public Methods
 
 /**
- * Finds and returns the FlagScore with the lowest score time for a given target player name and IP in a
- * given demo.
+ * Finds and returns the FlagScore's with the lowest score time per player name in a given demo.
  *
- * @param char[] _demoFilePath The path to the demo file path to parse
- * @param char[] _targetPlayerName The target player name
- * @param char[] _targetPlayerIp The target player IP
+ * @param char[] _demoFilePath The path to the demo file to parse
+ *
+ * @return std::unordered_map<std::string, FlagScore*> The list of FlagScore's
  */
-FlagScore* BestScoreTimeFinder::findBestScoreTime(char* _demoFilePath, const char* _targetPlayerName, const char* _targetPlayerIp)
+std::unordered_map<std::string, FlagScore*> BestScoreTimeFinder::findBestScoreTimes(char* _demoFilePath)
 {
-  FlagScore* bestFlagScore = NULL;
+  std::unordered_map<std::string, FlagScore*> bestPlayerFlagScores;
 
   ParsedDemo* parsedDemo = demoParser->parseDemo(_demoFilePath);
   if (parsedDemo)
   {
+    /*
     clientlogf("demoheader data:");
     clientlogf("magic: %s", parsedDemo->getDemoHeader()->magic);
     clientlogf("version: %d", parsedDemo->getDemoHeader()->version);
     clientlogf("protocol: %d", parsedDemo->getDemoHeader()->protocol);
     clientlogf("desc: %s", parsedDemo->getDemoHeader()->desc);
     clientlogf("plist: %s", parsedDemo->getDemoHeader()->plist);
+    */
 
     FlagScore* nextFlagScore;
     do
     {
       nextFlagScore = flagScoreFinder->findNextFlagScore(parsedDemo->getPacketStream());
       if (nextFlagScore &&
-          nextFlagScore->getWasFlagStolenFromOriginalPosition() &&
-          flagScoreWasDoneByTargetPlayer(nextFlagScore, _targetPlayerName, _targetPlayerIp))
-      {
-        clientlogf("Found relevant flag score: %d milliseconds by %s (%d, %s) with weapon %d",
-                   nextFlagScore->calculateScoreTime(),
-                   nextFlagScore->getPlayer()->getName(),
-                   nextFlagScore->getPlayer()->getClientNumber(),
-                   nextFlagScore->getPlayer()->getIpString().c_str(),
-                   nextFlagScore->getWeaponId()
-        );
+          nextFlagScore->getWasFlagStolenFromOriginalPosition())
+      { // Found a valid flag score
+        std::string playerName(nextFlagScore->getPlayer()->getName());
+
+        FlagScore* bestFlagScore = NULL;
+        if (bestPlayerFlagScores.find(playerName) != bestPlayerFlagScores.end())
+        {
+          bestFlagScore = bestPlayerFlagScores[playerName];
+        }
 
         if (!bestFlagScore ||
             nextFlagScore->calculateScoreTime() < bestFlagScore->calculateScoreTime())
         {
-          bestFlagScore = nextFlagScore;
+          // Copy the FlagScore object to prevent further modifications by the FlagScoreFinder
+          FlagScore* copiedFlagScore = new FlagScore(nextFlagScore);
+          bestPlayerFlagScores[playerName] = copiedFlagScore;
         }
       }
     }
     while (nextFlagScore);
   }
 
-  return bestFlagScore;
-}
-
-
-// Private Methods
-
-/**
- * Returns whether a given FlagScore was done by the target player.
- *
- * @param FlagScore _flagScore The FlagScore to check
- * @param char[] _targetPlayerName The target player name
- * @param char[] _targetPlayerIp The target player IP
- *
- * @return bool True if the given FlagScore was done by the target player, false otherwise
- */
-bool BestScoreTimeFinder::flagScoreWasDoneByTargetPlayer(FlagScore* _flagScore, const char* _targetPlayerName, const char* _targetPlayerIp)
-{
-  char* playerName = _flagScore->getPlayer()->getName();
-  bool playerNameMatchesTargetName = (_targetPlayerName == NULL || !strcmp(playerName, _targetPlayerName));
-
-  const char* playerIp = _flagScore->getPlayer()->getIpString().c_str();
-  bool playerIpMatchesTargetIp = (_targetPlayerIp == NULL || !strcmp(playerIp, _targetPlayerIp));
-
-  return (playerNameMatchesTargetName && playerIpMatchesTargetIp);
+  return bestPlayerFlagScores;
 }

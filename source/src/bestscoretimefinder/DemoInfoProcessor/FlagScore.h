@@ -20,6 +20,7 @@ class FlagScore
   public:
 
     FlagScore(Player*);
+    FlagScore(FlagScore*);
 
     Player* getPlayer();
     bool getWasFlagStolenFromOriginalPosition();

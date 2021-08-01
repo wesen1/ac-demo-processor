@@ -1,5 +1,6 @@
 // main.cpp: initialisation & main loop
 
+#include "application/Application.h"
 #include "cube.h"
 
 void cleanup(char *msg)         // single program exit point;
@@ -986,6 +987,10 @@ VARP(compatibilitymode, 0, 1, 1); // FIXME : find a better place to put this ?
 
 int main(int argc, char **argv)
 {
+    Application application;
+    return application.run(argc, argv);
+
+
     extern struct servercommandline scl;
     #ifdef WIN32
     //atexit((void (__cdecl *)(void))_CrtDumpMemoryLeaks);
