@@ -39,7 +39,10 @@ Message* MessageStream::getNextMessage()
     if (lastClientMessage->clientMessagesBuffer.remaining() > 0)
     {
       nextMessage = messageParser->parseNextMessageFromBuffer(1, &lastClientMessage->clientMessagesBuffer);
-      nextMessage->setParentClientMessage(lastClientMessage);
+      if (lastClientMessage)
+      {
+        lastClientMessage->addChildMessage(nextMessage);
+      }
       if (nextMessage) return nextMessage;
     }
 
