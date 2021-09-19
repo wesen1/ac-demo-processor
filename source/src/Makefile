@@ -157,6 +157,7 @@ CLIENT_OBJS= \
 	bestscoretimefinder/FlagScoreFinder.o \
 	bestscoretimefinder/BestScoreTimeFinder.o \
 	bestscoretimefinder/BestScoreTimeFinderFactory.o \
+	demometadatafinder/DemoMetaData.o \
 	demowriter/DemoWriter.o \
 	application/Commands/FindBestScoreTimes.o \
 	application/Commands/RemoveMessageTypes.o \
