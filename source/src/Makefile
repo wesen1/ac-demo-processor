@@ -161,6 +161,7 @@ CLIENT_OBJS= \
 	demometadatafinder/DemoMetaDataFinder.o \
 	demowriter/DemoWriter.o \
 	application/Commands/FindBestScoreTimes.o \
+	application/Commands/FindDemoMetaData.o \
 	application/Commands/RemoveMessageTypes.o \
 	application/Application.o
 
