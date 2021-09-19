@@ -5,6 +5,7 @@
 
 #include "Application.h"
 #include "Commands/FindBestScoreTimes.h"
+#include "Commands/FindDemoMetaData.h"
 #include "Commands/RemoveMessageTypes.h"
 
 
@@ -30,6 +31,16 @@ int Application::run(int _argc, char **_argv)
     [&demoFilePath]()
     {
       FindBestScoreTimes command;
+      command.execute(demoFilePath);
+    }
+  );
+
+  CLI::App* findDemoMetaDataCommand = app.add_subcommand("finddemometadata", "Finds the meta data for a given demo and prints the results as a JSON string");
+  findDemoMetaDataCommand->add_option("-d,--demo", demoFilePath, "The demo file to process")->required();
+  findDemoMetaDataCommand->callback(
+    [&demoFilePath]()
+    {
+      FindDemoMetaData command;
       command.execute(demoFilePath);
     }
   );
