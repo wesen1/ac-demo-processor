@@ -158,6 +158,7 @@ CLIENT_OBJS= \
 	bestscoretimefinder/BestScoreTimeFinder.o \
 	bestscoretimefinder/BestScoreTimeFinderFactory.o \
 	demometadatafinder/DemoMetaData.o \
+	demometadatafinder/DemoMetaDataFinder.o \
 	demowriter/DemoWriter.o \
 	application/Commands/FindBestScoreTimes.o \
 	application/Commands/RemoveMessageTypes.o \
