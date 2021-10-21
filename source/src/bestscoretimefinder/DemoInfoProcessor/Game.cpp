@@ -55,6 +55,7 @@ bool Game::isFlagAtOriginalPosition(int _flagId)
  */
 void Game::processMessage(Message* _message)
 {
+  // TODO: Replace by SV_MAPCHANGE check
   if (_message->getType() == SV_GAMEMODE)
   {
     Gamemode* gamemodeMessage = static_cast<Gamemode*>(_message);

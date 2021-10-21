@@ -57,7 +57,8 @@ FlagScore* FlagScoreFinder::findNextFlagScore(PacketStream* _packetStream)
           if (!game->getIsGameModeCtf()) return NULL;
         }
         //else clientlogf("Found no next message");
-      } while (nextMessage);
+      }
+      while (nextMessage);
     }
   }
   while (nextPacket);
